@@ -1,5 +1,7 @@
 # node-translator
 Papago Translator for node
+
+![alt text](https://papago.naver.com/static/img/papago_og.png)
 ## Example Usage
 ### import
 ```ts

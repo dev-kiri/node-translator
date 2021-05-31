@@ -15,7 +15,7 @@ new Papago({
         target: 'en',
         text: '안녕'
     }
-}).translate().then(res => console.log(res.translatedText));
+}).translate().then(res => console.log(res));
 
 >>> {
     srcLangType: 'ko',
@@ -43,7 +43,7 @@ new Papago({
         text: '안녕'
     },
     engineType: 'nsmt'
-}).translate().then(res => console.log(res.translatedText));
+}).translate().then(res => console.log(res));
 
 >>> {
     translatedText: 'Hi.',

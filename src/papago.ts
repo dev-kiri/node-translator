@@ -8,8 +8,7 @@ export class Papago {
 
     private readonly ver: string = 'v1.5.9_33e53be80f';
     private readonly hash_algorithm: string = 'md5';
-    
-    private readonly DETECT_URL: string = 'https://papago.naver.com/apis/langs/dect';
+
     private readonly TRANSLATE_URL: string;
 
     private engineType: string;
@@ -25,8 +24,8 @@ export class Papago {
     private text: string;
 
     constructor({
+        engineType = 'n2mt',
         extraHeaders: {
-            engineType = 'n2mt',
             locale = 'en',
             dict = true,
             dictDisplay = 30,
@@ -65,6 +64,8 @@ export class Papago {
             if ( lang == null ) {
                 throw new DetectionError('Cannot detect text');
             }
+            console.log(lang);
+            this.source = lang;
         }
 
         const data: PapagoData = {
@@ -104,9 +105,10 @@ export class Papago {
     public static async detect(query: string): Promise<DetectedLanguage | null> {
         const uuid: string = UUID.randomUUID().toString();
         const timestamp: number = new Date().getTime();
-        const { headers } = requestHeaders(uuid, this.prototype.DETECT_URL, timestamp, this.prototype.ver, this.prototype.hash_algorithm);
+        const url: string = 'https://papago.naver.com/apis/langs/dect';
+        const { headers } = requestHeaders(uuid, url, timestamp, 'v1.5.9_33e53be80f', 'md5');
         
-        const res = await fetch(this.prototype.DETECT_URL, {
+        const res = await fetch(url, {
             headers: {
                 ...headers,
                 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
@@ -124,8 +126,8 @@ export class Papago {
 }
 
 export interface PapagoConfig {
+    engineType ?: string,
     extraHeaders ?: {
-        engineType ?: string,
         locale ?: string,
         dict ?: boolean,
         dictDisplay ?: number,

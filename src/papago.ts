@@ -64,7 +64,6 @@ export class Papago {
             if ( lang == null ) {
                 throw new DetectionError('Cannot detect text');
             }
-            console.log(lang);
             this.source = lang;
         }
 

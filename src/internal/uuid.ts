@@ -5,7 +5,7 @@ export class UUID {
     private buffer: string[];
     private rnds: Uint8Array;
 
-    constructor (buffer: string[], rnds: Uint8Array) {
+    private constructor (buffer: string[], rnds: Uint8Array) {
         this.buffer = buffer;
         this.rnds = rnds;
     }
